@@ -12,6 +12,7 @@ main = Blueprint('language_blueprint', __name__)
 
 @main.route('/')
 def get_languages():
+    """
     has_access = Security.verify_token(request.headers)
 
     if has_access:
@@ -26,3 +27,13 @@ def get_languages():
     else:
         response = jsonify({'message': 'Unauthorized'})
         return response, 401
+    """
+
+    try:
+        languages = LanguageService.get_languages()
+        if (len(languages) > 0):
+            return jsonify({'languages': languages, 'message': "SUCCESS", 'success': True})
+        else:
+            return jsonify({'message': "NOTFOUND", 'success': True})
+    except CustomException:
+        return jsonify({'message': "ERROR", 'success': False})
