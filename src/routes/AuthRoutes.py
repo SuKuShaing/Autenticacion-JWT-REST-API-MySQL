@@ -17,10 +17,9 @@ def login():
 
     _user = User(0, username, password, None)
     authenticated_user = AuthService.login_user(_user)
-
     if (authenticated_user != None):
-        encoded_token = Security.generate_token(authenticated_user)
-        return jsonify({'success': True, 'token': encoded_token})
+        encoded_token = Security.generate_token(authenticated_user) # Aquí se genera el token
+        return jsonify({'success': True, 'token': encoded_token}) # aquí se le retorna al usuario
     else:
         response = jsonify({'message': 'Unauthorized'})
         return response, 401

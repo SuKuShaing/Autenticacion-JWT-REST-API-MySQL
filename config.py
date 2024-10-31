@@ -1,4 +1,4 @@
-from decouple import config
+from decouple import config # Función para traer variables de entorno
 
 
 class Config:
